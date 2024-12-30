@@ -7,3 +7,15 @@ class TestUtils(unittest.TestCase):
     file = "utils.py"
 
     self.assertTrue(fileExists(path, file), "Error in fileExists implementation.\nCannot detect file.")
+
+  def test_trainingSetExists(self):
+    path = "./data"
+    file = "training.csv"
+
+    self.assertTrue(fileExists(path, file), "Training set does not exist or is not in a csv format.")
+
+  def test_testSetExists(self):
+    path = "./data"
+    file = "test.csv"
+
+    self.assertTrue(fileExists(path, file), "Test set does not exist or is not in a csv format.")
