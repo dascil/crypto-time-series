@@ -1,3 +1,5 @@
+import os
+
 def fileExists(directory: str, file:str) -> bool:
     """
     Checks if the file exists in the given directory.
@@ -9,5 +11,8 @@ def fileExists(directory: str, file:str) -> bool:
     Returns:
         bool: True if file exist, False otherwise.
     """
-    raise NotImplementedError
+    if not os.path.exists(directory):
+      return False
+
+    return os.path.exists(os.path.join(directory, file))
 

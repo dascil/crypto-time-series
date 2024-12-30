@@ -1,7 +1,8 @@
 import unittest
-from utils import fileExists
+from src.utils import fileExists
 
 class TestUtils(unittest.TestCase):
+
   def test_fileExists(self):
     path = "./src"
     file = "utils.py"
