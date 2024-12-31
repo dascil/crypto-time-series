@@ -16,11 +16,12 @@ def fileExists(directory: str, file:str) -> bool:
 
     return os.path.exists(os.path.join(directory, file))
 
-def headerValidation(file:str, headers:set) -> bool:
+def headerValidation(path:str, file:str, headers:set) -> bool:
     """
     Checks to see if csv file in the data directory has the correct headers.
 
     Args:
+        path (str): Path to folder containing csv file
         file (str): Name of the csv dataset file
         headers (set): A set of the headers to check for existence of.
 
