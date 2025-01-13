@@ -1,6 +1,6 @@
 import os
 
-def fileExists(directory: str, file:str) -> bool:
+def fileValidation(directory: str, file:str) -> bool:
     """
     Checks if the file exists in the given directory.
 
@@ -28,6 +28,8 @@ def headerValidation(path:str, file:str, headers:set) -> bool:
     Returns:
         bool: True if csv file contains the requested headers, False otherwise.
     """
-
+    # isValidFile = fileExists(path, file)
+    # if not isValidFile:
+    #     return False
     return NotImplementedError
 

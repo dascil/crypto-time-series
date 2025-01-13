@@ -1,22 +1,37 @@
 import unittest
-from src.utils import fileExists, headerValidation
+from src.utils import fileValidation, headerValidation
 
 class TestUtils(unittest.TestCase):
 
-  def test_fileExists(self):
+  def test_fileValidationFileExists(self):
     path = "./src"
     file = "utils.py"
-    self.assertTrue(fileExists(path, file), "Error in fileExists implementation.\n Returned False when file exists.")
+    self.assertTrue(fileValidation(path, file), "Error in fileValidation implementation.\n Returned False when file exists.")
 
-  def test_fileDoesNotExists(self):
+  def test_fileValidationFileDoesNotExists(self):
     path = "./src"
     file = "foo.bar"
-    self.assertFalse(fileExists(path, file), "Error in fileExists implementation.\n Returned True when file does not exist.")
+    self.assertFalse(fileValidation(path, file), "Error in fileValidation implementation.\n Returned True when file does not exist.")
 
-  def test_folderDoesNotExist(self):
+  def test_fileValidationFolderDoesNotExist(self):
     path = "./foobar"
     file = "test.csv"
-    self.assertFalse(fileExists(path, file), "Error in fileExists implementation.\n Returned True when folder does not exist.")
+    self.assertFalse(fileValidation(path, file), "Error in fileValidation implementation.\n Returned True when folder does not exist.")
+
+  def test_fileValidationInvalidFolder(self):
+    path = "foobar"
+    file = "utils.py"
+    self.assertFalse(fileValidation(path, file), "Error in fileValidation implementation.\n Returned True when invalid input for folder path.")
+
+  def test_fileValidationInvalidFile(self):
+    path = ".src"
+    file = "util"
+    self.assertFalse(fileValidation(path, file), "Error in fileValidation implementation.\n Returned True when invalid input for file name.")
+
+  def test_headerValidationNonexistentFile(self):
+    headers = {"Red", "Blue"}
+    self.assertRaises(NotImplementedError)
+    # self.assertFalse(headerValidation("./test/data", "foobar.csv", headers), "Error in headerValidation. Returned True for file that does not exist.")
 
   def test_headerValidationEmptyCSV(self):
     headers = {"Red", "Blue"}
