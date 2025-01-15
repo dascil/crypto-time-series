@@ -28,27 +28,37 @@ class TestUtils(unittest.TestCase):
     file = "util"
     self.assertFalse(fileValidation(path, file), "Error in fileValidation implementation.\n Returned True when invalid input for file name.")
 
+  def test_fileValidationInvalidFile(self):
+    path = None
+    file = "util"
+    self.assertFalse(fileValidation(path, file), "Error in fileValidation implementation.\n Returned True when None input for path.")
+
+  def test_fileValidationInvalidFile(self):
+    path = ".src"
+    file = None
+    self.assertFalse(fileValidation(path, file), "Error in fileValidation implementation.\n Returned True when None input for file name.")
+
   def test_headerValidationNonexistentFile(self):
     headers = {"Red", "Blue"}
-    self.assertRaises(NotImplementedError)
-    # self.assertFalse(headerValidation("./test/data", "foobar.csv", headers), "Error in headerValidation. Returned True for file that does not exist.")
+    self.assertFalse(headerValidation("./test/data", "foobar.csv", headers), "Error in headerValidation. Returned True for file that does not exist.")
 
   def test_headerValidationEmptyCSV(self):
     headers = {"Red", "Blue"}
-    self.assertRaises(NotImplementedError)
-    #self.assertFalse(headerValidation("./test/data","emptySet.csv", headers), "Error in headerValidation. Returned True for empty CSV file.")
+    self.assertFalse(headerValidation("./test/data","emptySet.csv", headers), "Error in headerValidation. Returned True for empty CSV file.")
 
-  def test_headerValidationEnptySet(self):
+  def test_headerValidationEmptySet(self):
     headers = {}
-    self.assertRaises(NotImplementedError)
-    #self.assertFalse(headerValidation("./test/data","headerSet.csv", headers), "Error in headerValidation. Returned True for empty header set.")
+    self.assertFalse(headerValidation("./test/data","headerSet.csv", headers), "Error in headerValidation. Returned True for empty header set.")
 
   def test_headerValidationMatch(self):
     headers = {"Red", "Blue"}
-    self.assertRaises(NotImplementedError)
-    #self.assertTrue(headerValidation("./test/data","headerSet.csv", headers), "Error in headerValidation. Returned False when headers exist.")
+    self.assertTrue(headerValidation("./test/data","headerSet.csv", headers), "Error in headerValidation. Returned False when headers exist.")
 
   def test_headerValidationPartialMatch(self):
     headers = {"Red", "Pink"}
-    self.assertRaises(NotImplementedError)
-    #self.assertFalse(headerValidation("./test/data","headerSet.csv", headers), "Error in headerValidation. Returned true when not all headers exist.")
+    self.assertFalse(headerValidation("./test/data","headerSet.csv", headers), "Error in headerValidation. Returned true when not all headers exist.")
+
+  def test_headerValidationNoneHeaders(self):
+    headers = None
+    self.assertFalse(headerValidation("./test/data","headerSet.csv", headers), "Error in headerValidation. Returned true when not all headers exist.")
+
