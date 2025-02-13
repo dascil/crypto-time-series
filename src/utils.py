@@ -12,7 +12,7 @@ def fileValidation(path: str, file:str) -> bool:
     Returns:
         bool: True if file exist, False otherwise.
     """
-    if path is None or file is None or not os.path.exists(path):
+    if not isinstance(path, str) or not isinstance(file, str) or not os.path.exists(path):
         return False
 
     return os.path.exists(os.path.join(path, file))
@@ -30,8 +30,7 @@ def headerValidation(path:str, file:str, headers:set) -> bool:
     Returns:
         bool: True if csv file contains the requested headers, False otherwise.
     """
-    isValidFile = fileValidation(path, file)
-    if not headers or not isValidFile or not file.endswith('.csv'):
+    if not headers and not isinstance(headers, set):
         return False
 
     fullPath = os.path.join(path, file)
@@ -47,3 +46,18 @@ def headerValidation(path:str, file:str, headers:set) -> bool:
             return False
 
     return csvHeaders.issuperset(headers)
+
+def csvValidation(path:str, file:str, headers:set) -> bool:
+    """
+    Checks to see if csv file is validated for use.
+    Does not validate data.
+
+    Args:
+        path (str): Path to folder containing csv file
+        file (str): Name of the csv dataset file
+        headers (set): A set of the headers to check for existence of.
+
+    Returns:
+        bool: True if csv file contains the requested headers, False otherwise.
+    """
+    return fileValidation(path, file) and headerValidation(path, file, headers)

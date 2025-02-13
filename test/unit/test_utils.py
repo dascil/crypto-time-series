@@ -38,10 +38,6 @@ class TestUtils(unittest.TestCase):
     file = None
     self.assertFalse(fileValidation(path, file), "Error in fileValidation implementation.\n Returned True when None input for file name.")
 
-  def test_headerValidationNonexistentFile(self):
-    headers = {"Red", "Blue"}
-    self.assertFalse(headerValidation("./test/data", "foobar.csv", headers), "Error in headerValidation. Returned True for file that does not exist.")
-
   def test_headerValidationEmptyCSV(self):
     headers = {"Red", "Blue"}
     self.assertFalse(headerValidation("./test/data","emptySet.csv", headers), "Error in headerValidation. Returned True for empty CSV file.")
